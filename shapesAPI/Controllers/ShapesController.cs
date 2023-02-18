@@ -20,7 +20,7 @@ namespace shapesAPI.Controllers
         {
             try
             {
-                return Ok(JsonConvert.SerializeObject(new ShapeModel(sentenceInput.ToUpper()), Formatting.Indented));
+                return Ok(JsonConvert.SerializeObject(new ShapeModel(sentenceInput), Formatting.Indented));
             }
             catch (Exception ex)
             {

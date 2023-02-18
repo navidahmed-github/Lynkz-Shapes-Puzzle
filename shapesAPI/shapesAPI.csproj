@@ -9,12 +9,14 @@
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="AspNetCoreRateLimit" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Controllers\" />
     <None Remove="Models\" />
     <None Remove="Newtonsoft.Json" />
+    <None Remove="AspNetCoreRateLimit" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

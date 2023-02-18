@@ -2,34 +2,35 @@
 using System.Diagnostics.Metrics;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Rewrite;
 using Newtonsoft.Json;
 
 namespace shapesAPI.Models
 {
-    // Number corresponds to the number of measurements required
-    public enum ShapeType
-    {
-        ISOSCELES_TRIANGLE = 2,
-        SQUARE = 1,
-        SCALENE_TRIANGLE = 3,
-        PARALLELOGRAM = 2,
-        EQUILATERAL_TRIANGLE = 1,
-        PENTAGON = 1 | 5,
-        RECTANGLE = 2,
-        HEXAGON = 1,
-        HEPTAGON = 1,
-        OCTAGON = 1,
-        CIRCLE = 1,
-        OVAL = 1
-    }
 
 	public class ShapeModel
 	{
+        // Number corresponds to the number of measurements required
+        private enum ShapeType
+        {
+            ISOSCELES_TRIANGLE = 2,
+            SQUARE = 1,
+            SCALENE_TRIANGLE = 3,
+            PARALLELOGRAM = 2,
+            EQUILATERAL_TRIANGLE = 1,
+            PENTAGON = 1 | 5,   // 5 accounts for irregular pentagon
+            RECTANGLE = 2,
+            HEXAGON = 1,
+            HEPTAGON = 1,
+            OCTAGON = 1,
+            CIRCLE = 1,
+            OVAL = 1
+        }
+
 		public string ShapeName;
         public List<MeasurementModel> Measurements;
         private ShapeType Shape;
-
         public ShapeModel(string shapeName, List<MeasurementModel> measurements)
 		{
 			ShapeName = shapeName;
@@ -38,8 +39,8 @@ namespace shapesAPI.Models
 
         public ShapeModel(string input)
         {
-            ShapeName = ParseShape(input);
-            Measurements = ParseMeasurements(input);
+            ShapeName = ParseShape(input.ToUpper());
+            Measurements = ParseMeasurements(input.ToUpper());
         }
 
         private string ParseShape(String input)
@@ -73,7 +74,7 @@ namespace shapesAPI.Models
             }
 
             if (!validShape || shapeName == "")
-                throw new Exception("Shape is not valid");
+                throw new Exception("Shape is not supported");
 
             return shapeName;
         }
@@ -82,7 +83,7 @@ namespace shapesAPI.Models
         {
             List<MeasurementModel> measurements = new List<MeasurementModel>();
             string[] primaryMeasurement =
-                new Regex(@"with\s+(.*?)\s+([0-9]+)", RegexOptions.IgnoreCase)
+                new Regex(@"with\s+(.*?)\s+([0-9]+$)", RegexOptions.IgnoreCase)
                 .Match(input).ToString().Split(' ');
 
             try
@@ -105,9 +106,11 @@ namespace shapesAPI.Models
                         measurements.Add(new MeasurementModel(additionalMeasurement[2], additionalMeasurement[4]));
                 }
             }
+
+            // measurements with shade specs
             catch (Exception ex)
             {
-                throw new Exception("Please make sure the measurements follow the correct sentence structure");
+                throw new Exception("Please make sure the measurements are valid");
             }
 
             return measurements;
