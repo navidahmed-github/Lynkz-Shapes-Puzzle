@@ -13,87 +13,19 @@ using System.Text.RegularExpressions;
 namespace shapesAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class shapesApiController : Controller
+    public class ShapesController : Controller
     {
-        public static readonly List<string> Shapes = new List<string>()
-        {
-            "ISOSCELES TRIANGLE",
-            "SQUARE",
-            "SCALENE TRIANGLE",
-            "PARALLELOGRAM",
-            "EQUILATERAL TRIANGLE",
-            "PENTAGON",
-            "RECTANGLE",
-            "HEXAGON",
-            "HEPTAGON",
-            "OCTAGON",
-            "CIRCLE",
-            "OVAL"
-        };
-
-        // GET api/{sentenceInput}
         [HttpGet("{sentenceInput}")]
-        public string GetShape(string sentenceInput)
+        public IActionResult GetTest(string sentenceInput)
         {
-            static string parseShape(String input)
+            try
             {
-                string shapeName = "";
-                string[] shapeFragment =
-                    new Regex(@"draw\s+(.*?)\s+(with)", RegexOptions.IgnoreCase)
-                    .Match(input).ToString().Split(' ');
-
-                if (shapeFragment[3] != "with")
-                {
-                    shapeName = shapeFragment[2] + ' ' + shapeFragment[3];
-                }
-                else
-                {
-                    shapeName = shapeFragment[2];
-                }
-
-                return shapeName;
+                return Ok(JsonConvert.SerializeObject(new ShapeModel(sentenceInput.ToUpper()), Formatting.Indented));
             }
-
-            static Dictionary<int, MeasurementModel> parseMeasurements(String input)
+            catch (Exception ex)
             {
-                Dictionary<int, MeasurementModel> measurements = new Dictionary<int, MeasurementModel>(); 
-                string[] primaryMeasurement =
-                    new Regex(@"with\s+(.*?)\s+([0-9]+)", RegexOptions.IgnoreCase)
-                    .Match(input).ToString().Split(' ');
-
-                if (primaryMeasurement[3] != "of")
-                {
-                    measurements.Add(0, new MeasurementModel(primaryMeasurement[2] + ' ' + primaryMeasurement[3], primaryMeasurement[5]));
-                }
-                else
-                {
-                    measurements.Add(0, new MeasurementModel(primaryMeasurement[2], primaryMeasurement[4]));
-                }
-
-                List<Match> additionalMeasurementFragments =
-                    new Regex(@"and\s+(.*?)\s+([0-9]+)", RegexOptions.IgnoreCase)
-                    .Matches(input).ToList();
-                int key = 1;
-                foreach (Match measurementFragment in additionalMeasurementFragments)
-                {
-                    string[] additionalMeasurement = measurementFragment.ToString().Split(' ');
-                    if (additionalMeasurement[3] != "of")
-                    {
-                        measurements.Add(key, new MeasurementModel(additionalMeasurement[2] + ' ' + additionalMeasurement[3], additionalMeasurement[5]));
-                        key++;
-                    }
-                    else
-                    {
-                        measurements.Add(key, new MeasurementModel(additionalMeasurement[2], additionalMeasurement[4]));
-                        key++;
-                    }
-                }
-
-                return measurements;
+                return StatusCode(500, ex.Message);
             }
-
-            ShapeModel shape = new ShapeModel(parseShape(sentenceInput), parseMeasurements(sentenceInput));
-            return JsonConvert.SerializeObject(shape);
         }
     }
 }
