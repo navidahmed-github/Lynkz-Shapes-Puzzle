@@ -14,7 +14,7 @@ function App() {
       </header>
       <Content />
       <footer className='Footer'>
-        plz hire me
+        Navid Ahmed
       </footer>
     </div>
   );
