@@ -9,10 +9,12 @@ As with any repository good documentation is always good convention and as such 
 
 ## Quick Start
 1. Copy the repo link and clone it into preferably Visual Studio Code to run both the Frontend and Backend.
-2. Install all recommended dependencies as per VS Code and download node.js: https://nodejs.org/en/
-3. To run the Frontend, enter via the terminal: `npm start`
-4. To build the Backend: Hit `F5` or start debugging.
-5. Happy Testing!
+2. Install all recommended dependencies as per VS Code
+3. Run Backend Build: Hit `F5` or `Start Debugging`
+4. Change directories to shapes-frontend: `cd shapes-frontend`
+5. Install node modules: `npm install`
+6. Run Frontend Build: `npm start`
+7. Happy Testing!
 
 <strong>Notes:</strong> 
 - Support for 3D shapes was not possible due to time constraints with current project releases and demos. However, I would achieve this by adding an optional depth 
