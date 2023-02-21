@@ -19,17 +19,17 @@ namespace shapesAPI.Models
             SCALENE_TRIANGLE = 3,
             PARALLELOGRAM = 2,
             EQUILATERAL_TRIANGLE = 1,
-            PENTAGON = 1 | 5,   // 5 accounts for irregular pentagon
+            PENTAGON = 1,
             RECTANGLE = 2,
             HEXAGON = 1,
             HEPTAGON = 1,
             OCTAGON = 1,
             CIRCLE = 1,
-            OVAL = 1
+            OVAL = 2
         }
 
-		public string ShapeName;
-        public List<MeasurementModel> Measurements;
+		public string ShapeName { get; }
+        public List<MeasurementModel> Measurements { get; }
         private ShapeType Shape;
         public ShapeModel(string shapeName, List<MeasurementModel> measurements)
 		{
@@ -49,7 +49,7 @@ namespace shapesAPI.Models
                 new Regex(@"draw\s+(.*?)\s+(with)", RegexOptions.IgnoreCase)
                 .Match(input).ToString().Split(' ');
 
-            if (shapeFragment[0] == "")
+            if (shapeFragment[0] == "" || shapeFragment.Length <= 3)
                 throw new Exception("Please make sure you enter the shape with the correct sentence structure");
 
             if (shapeFragment[3] != "WITH")
@@ -107,10 +107,10 @@ namespace shapesAPI.Models
                 }
             }
 
-            // measurements with shade specs
+
             catch (Exception ex)
             {
-                throw new Exception("Please make sure the measurements are valid");
+                throw new Exception("Please make sure the measurements are valid and the sentence structure is correct");
             }
 
             return measurements;

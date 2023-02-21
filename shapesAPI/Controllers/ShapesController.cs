@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using shapesAPI.Models;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using System.Text;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,15 +17,15 @@ namespace shapesAPI.Controllers
     public class ShapesController : Controller
     {
         [HttpGet("{sentenceInput}")]
-        public IActionResult GetTest(string sentenceInput)
+        public ActionResult GetTest(string sentenceInput)
         {
             try
             {
-                return Ok(JsonConvert.SerializeObject(new ShapeModel(sentenceInput), Formatting.Indented));
+                return Json(new {statusCode = "200",  status = "success", data = new ShapeModel(sentenceInput) });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+               return Json(new { StatusCode = "500", status = "error", data = new { message = ex.Message } });
             }
         }
     }

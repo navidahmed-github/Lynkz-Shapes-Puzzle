@@ -13,11 +13,12 @@ namespace shapesAPI.Models
             WIDTH,
             HEIGHT,
             LENGTH,
+            BASE
         }
 
-        public string MeasurementName;
-		public string MeasurementAmount;
-        private  MeasurementType Measurement;
+        public string MeasurementName { get; }
+		public string MeasurementAmount { get; }
+        private MeasurementType Measurement;
 		public MeasurementModel(string measurementType, string measurementAmount)
 		{
             MeasurementName = MeasurementTypeValidation(measurementType);
