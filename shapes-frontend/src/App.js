@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import Content from './components/content/Content'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>
+        Lynkz Shapes Puzzle
+        </h1>
+        <h2>
+          Welcome to the Lynkz Shapes Puzzle Solution!
+        </h2>
       </header>
+      <Content />
+      <footer className='Footer'>
+        plz hire me:
+      </footer>
     </div>
   );
 }
