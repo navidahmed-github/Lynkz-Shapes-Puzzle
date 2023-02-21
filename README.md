@@ -5,8 +5,6 @@ Hi There!
 This respository contains the solution to the shapes puzzle. This was accomplished using a .NET 6 Web API Backend and a React.JS Frontend in substitution
  for Angluar, as approved by Justin.
 
-As with any repository good documentation is always good convention and as such see below for instructions on how to start:
-
 ## Quick Start
 1. Copy the repo link and clone it into preferably Visual Studio Code to run both the Frontend and Backend.
 2. Install all recommended dependencies as per VS Code
