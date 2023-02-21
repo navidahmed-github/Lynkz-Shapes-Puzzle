@@ -19,4 +19,4 @@ As with any repository good documentation is always good convention and as such 
 measurement to be parsed from the sentence with a quantity which would then be used in the frontend. I would then create 3D models of the respective shapes using Three.js, React Three Fiber and React Three Drei libraies.
 - Additionally, rate limiting would be implemented on the API Endpoint alongside with refactored utility methods for polygon shapes and drawing utilities to boost future reusability.
 
-Thank you for the taking the time view the solution, feel free to explore my <a href=https://github.com/navidahmed-github>GitHub Portfolio</a> to get a better idea of my technical ability 
+Thank you for the taking the time view the solution, feel free to explore my <a href=https://github.com/navidahmed-github>GitHub Portfolio</a> to get a better idea of my technical ability, hope to get in touch soon!
