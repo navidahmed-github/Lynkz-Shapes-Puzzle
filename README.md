@@ -11,7 +11,7 @@ As with any repository good documentation is always good convention and as such 
 1. Copy the repo link and clone it into preferably Visual Studio Code to run both the Frontend and Backend.
 2. Install all recommended dependencies as per VS Code
 3. Run Backend Build: Hit `F5` or `Start Debugging`
-4. Change directories to shapes-frontend: `cd shapes-frontend`
+4. Create new terminal and change directories to shapes-frontend: `cd shapes-frontend`
 5. Install node modules: `npm install`
 6. Run Frontend Build: `npm start`
 7. Happy Testing!
