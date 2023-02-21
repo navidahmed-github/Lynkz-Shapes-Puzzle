@@ -6,19 +6,17 @@ const convertToRadians = (degrees) => {
 
 const Heptagon = ({ sideLength }) => {
     const side = parseInt(sideLength)
-
-
     const height = side/(2*Math.tan(Math.PI/2/7))
 
     // Diagonal Short
     const dShort = 2*side*Math.cos(Math.PI/7)
 
-    const x1 = 0; // Origin
+    const x1 = 0;
     const y1 = height - (side * Math.sin(convertToRadians(51.43)));
     const x2 = (((side * Math.cos(convertToRadians(51.43))) + side + (side * Math.cos(convertToRadians(51.43)))) - dShort) / 2;
     const y2 =  side / 2
     const x3 = ((side * Math.cos(convertToRadians(51.43))) + (side / 2));
-    const y3 = 0; // Origin
+    const y3 = 0;
     const x4 = x2 + dShort;
     const y4 = y2;
     const x5 = (side * Math.cos(convertToRadians(51.43))) + side + (side * Math.cos(convertToRadians(51.43)));

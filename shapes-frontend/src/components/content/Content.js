@@ -21,7 +21,6 @@ export default function Content() {
     const [shape, setShape] = useState(defaultImage)
 
     function drawShape(shapeData) {
-
       switch (shapeData.shapeName) {
         case 'CIRCLE':
           if (shapeData.measurements.length < 1 || shapeData.measurements.length > 1)
@@ -29,12 +28,14 @@ export default function Content() {
           if (shapeData.measurements[0].measurementName !== 'RADIUS')
             return setError('This shape only takes a measurement type of radius')
           return setShape(<Circle radius={shapeData.measurements[0].measurementAmount}></Circle>)
+
         case 'SQUARE':
           if (shapeData.measurements.length < 1 || shapeData.measurements.length > 1)
             return setError('This shape requires one side length measurement')
           if (shapeData.measurements[0].measurementName !== 'SIDE_LENGTH')
             return setError('This shape only takes a measurement type of side length')
           return setShape(<Square size={shapeData.measurements[0].measurementAmount}></Square>)
+
         case 'RECTANGLE':
           if (shapeData.measurements.length < 2 || shapeData.measurements.length > 2)
             return setError('This shape requires one width and height measurement')
@@ -45,6 +46,7 @@ export default function Content() {
             return setShape(<Rectangle width={shapeData.measurements[1].measurementAmount} height={shapeData.measurements[0].measurementName}></Rectangle>)
           }
           return setError('This shape only takes a measurement type of width and height')
+
         case 'ISOSCELES_TRIANGLE':
           if (shapeData.measurements.length < 2 || shapeData.measurements.length > 2)
             return setError('This shape requires one width and height measurement')
@@ -55,6 +57,7 @@ export default function Content() {
             return setShape(<IsoscelesTriangle base={shapeData.measurements[1].measurementAmount} height={shapeData.measurements[0].measurementAmount} />)
           }
           return setError('This shape only takes a measurement type of base and height')
+
         case 'SCALENE_TRIANGLE':
           if (shapeData.measurements.length < 3 || shapeData.measurements.length > 3)
             return setError('This shape requires three side length measurements')
@@ -86,28 +89,32 @@ export default function Content() {
 
         case 'HEXAGON':
           if (shapeData.measurements.length < 1 || shapeData.measurements.length > 1)
-          return setError('This shape requires one side length measurement')
+            return setError('This shape requires one side length measurement')
           if (shapeData.measurements[0].measurementName !== 'SIDE_LENGTH')
             return setError('This shape only takes a measurement type of side length')
           return setShape(<Hexagon sideLength={shapeData.measurements[0].measurementAmount}></Hexagon>)
+
         case 'OCTAGON':
           if (shapeData.measurements.length < 1 || shapeData.measurements.length > 1)
-          return setError('This shape requires one side length measurement')
+            return setError('This shape requires one side length measurement')
           if (shapeData.measurements[0].measurementName !== 'SIDE_LENGTH')
             return setError('This shape only takes a measurement type of side length')
           return setShape(<Octagon sideLength={shapeData.measurements[0].measurementAmount}></Octagon>)
+
         case 'PENTAGON':
           if (shapeData.measurements.length < 1 || shapeData.measurements.length > 1)
           return setError('This shape requires one side length measurement')
           if (shapeData.measurements[0].measurementName !== 'SIDE_LENGTH')
             return setError('This shape only takes a measurement type of side length')
           return setShape(<Pentagon sideLength={shapeData.measurements[0].measurementAmount}></Pentagon>)  
+
         case 'HEPTAGON':
           if (shapeData.measurements.length < 1 || shapeData.measurements.length > 1)
           return setError('This shape requires one side length measurement')
           if (shapeData.measurements[0].measurementName !== 'SIDE_LENGTH')
             return setError('This shape only takes a measurement type of side length')
           return setShape(<Heptagon sideLength={shapeData.measurements[0].measurementAmount}></Heptagon>)
+
         case 'OVAL':
           if (shapeData.measurements.length < 2 || shapeData.measurements.length > 2)
             return setError('This shape requires a width and height measurement')
@@ -119,7 +126,7 @@ export default function Content() {
           }
           return setError('This shape only takes a measurement type of width and height')
 
-          default:
+        default:
           break;
       }
     }

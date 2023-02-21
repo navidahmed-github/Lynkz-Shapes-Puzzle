@@ -1,10 +1,7 @@
 import React from "react";
 
 const ScaleneEqualTriangle = ({ a, b, c }) => {
-  // Calculate the angles using the Law of Cosines
   const B = Math.acos((a * a + c * c - b * b) / (2 * a * c));
-
-  // Calculate the coordinates of the vertices using basic trigonometry
   const x1 = 0;
   const y1 = 0;
   const x2 = c;

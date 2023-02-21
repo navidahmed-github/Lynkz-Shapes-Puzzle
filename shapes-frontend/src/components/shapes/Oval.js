@@ -7,11 +7,9 @@ function Oval({ width, height }) {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
 
-    // Calculate the coordinates of the ellipse center
     const cx = canvas.width / 2;
     const cy = canvas.height / 2;
 
-    // Draw the ellipse
     ctx.beginPath();
     ctx.ellipse(cx, cy, width / 2, height / 2, 0, 0, 2 * Math.PI);
     ctx.fillStyle = 'blue';
